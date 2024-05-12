@@ -19,7 +19,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @Slf4j
 @RestController
-@RequestMapping("/Rol")
+@RequestMapping("/rol")
 public class RolController {
 
     @Autowired
