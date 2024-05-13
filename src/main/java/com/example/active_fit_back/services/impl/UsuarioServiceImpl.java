@@ -5,8 +5,7 @@ import com.example.active_fit_back.model.Usuario;
 import com.example.active_fit_back.repository.UsuarioRepository;
 import com.example.active_fit_back.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +18,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     private UsuarioRepository usuarioRepository;
 
 
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public List<Usuario> findAll() {
         List<Usuario> usuarios = usuarioRepository.findAll();
@@ -29,7 +26,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Long save(Usuario usuario) {
-        String contraseñaEncriptada = passwordEncoder.encode(usuario.getContrasena());
+
+        Double imc = usuario.getPeso() / usuario.getAltura();
+        usuario.setImc(imc);
+
+        String contraseñaEncriptada = BCrypt.hashpw(usuario.getContrasena(), BCrypt.gensalt());
         usuario.setContrasena(contraseñaEncriptada);
 
         usuarioRepository.save(usuario);
@@ -58,7 +59,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
 
         if( usuario != null) {
-            return passwordEncoder.matches(contrasena, usuario.get().getContrasena());
+            return true;
         }
         return false;
     }

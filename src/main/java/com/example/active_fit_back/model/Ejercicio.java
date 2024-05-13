@@ -29,7 +29,8 @@ public class Ejercicio implements Serializable {
     @Column(name = "url_video", nullable = false, length = 200)
     private String url_video;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_categoria", referencedColumnName = "id", nullable = false)
     private Categoria idCategoria;
 

@@ -29,11 +29,11 @@ public class RutinaEjercicio implements Serializable {
     @Column(name = "comentarios",  length = 200, nullable = false)
     private String comentarios;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_ejercicio", referencedColumnName = "id", nullable = false)
     private Ejercicio idEjercicio;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rutina", referencedColumnName = "id", nullable = false)
     private Rutina idRutina;
 

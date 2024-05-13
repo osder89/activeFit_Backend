@@ -21,14 +21,14 @@ public class ProgramacionRutina implements Serializable {
     private Long id;
 
     @Column(name = "dias", nullable = false, length = 100)
-    private Integer dias;
+    private String dias;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_programacion", referencedColumnName = "id", nullable = false)
     private Programacion idProgramacion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rutina", referencedColumnName = "id", nullable = false)
     private Rutina idRutina;
 

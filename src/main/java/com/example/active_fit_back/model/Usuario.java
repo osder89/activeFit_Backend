@@ -34,10 +34,10 @@ public class Usuario implements Serializable {
     @Column(name = "contrasena", nullable = false, length = 500)
     private String contrasena;
 
-    @Column(name = "urlImagen", nullable = false, length = 500)
+    @Column(name = "url_imagen", nullable = false, length = 500)
     private String urlImagen;
 
-    @Column(name = "numeroDeTelefono", nullable = false, length = 80)
+    @Column(name = "numero_de_telefono", nullable = false, length = 80)
     private String numeroDeTelefono;
 
     @Column(name = "altura", nullable = false)
@@ -50,7 +50,7 @@ public class Usuario implements Serializable {
     @Column(name = "imc", nullable = false)
     private Double imc;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_rol", referencedColumnName = "id", nullable = false)
     private Rol idRol;
 
